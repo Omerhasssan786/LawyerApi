@@ -1,6 +1,7 @@
 import  express  from "express";
 import cors from "cors"
 import { limit } from "./contants.js";
+import cookieParser from "cookie-parser"
 const app=express();
 
 app.use(cors({
@@ -9,8 +10,14 @@ app.use(cors({
 }))
 
 
-app.use(express.json({extended:true,limit}))
-
-app.use(express.static("public"))
-
+app.use(express.json({limit}));
+console.log(express.json())
+app.use(express.urlencoded({extended:true ,limit}))
+// app.use(express.json({ limit: '10mb' }));
+// app.use(express.urlencoded({ extended: true, limit: '10mb' }));
+app.use(cookieParser())
+app.use(express.static("public"));
+//routes import 
+import userRouter from "./routes/user.routes.js"
+app.use("/api/v1/user" ,userRouter)
 export {app};

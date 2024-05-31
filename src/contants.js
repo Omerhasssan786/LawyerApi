@@ -1,2 +1,2 @@
 export const limit="100kb"
-export const dbName="LawyerAPI"
+export const dbName="lawyer"
