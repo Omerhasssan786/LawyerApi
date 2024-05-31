@@ -8,6 +8,7 @@ try{
 catch(error)
 {
      console.log("DataBase Unable to Conect Level 0", error)
+     process.exit(1)
 }
 }
 export default connectDB;
