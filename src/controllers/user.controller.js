@@ -55,11 +55,10 @@ const SignupUser = asyncHandler(async (req , res) => {
         throw new apiError(400, "Password field is required");
     } else if (userType.trim() === "") {
         throw new apiError(400, "User Type field is required");
-    }  else if (Location.trim() === "") {
+    }  else if (Location.trim() === "") 
+        {
         throw new apiError(400, "Location field is required");
-    } else if (DOB.trim() === "") {
-        throw new apiError(400, "Date of Birth field is required");
-    }
+    } 
     else if (Phone==null) {
         throw new apiError(400, "Number is required")
     }
@@ -84,7 +83,7 @@ const SignupUser = asyncHandler(async (req , res) => {
         }
         console.log("dataase 1")
 const user=await User.create({
-    Name, Email, Password, Phone, DOB, userType, specification, Location
+    Name, Email, Password, Phone,  userType,  Location
 })
 console.log("dataase 2")
 const userCreated=await User.findById(user._id).select(
