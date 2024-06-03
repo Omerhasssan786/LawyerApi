@@ -40,10 +40,10 @@ const generateAccessAndRefereshTokens = async(userId) =>{
 // --------------------------------------------------------
 
 const SignupUser = asyncHandler(async (req , res) => {
-    let { Name, Email, Password, Phone, DOB, userType, specification, Location } = req.body
+    let { Name, Email, Password, Phone, userType } = req.body
     Phone=parseInt( Phone)
     console.log("typr", typeof Phone)
-    console.log("phone", Name, Email, Password, Phone, DOB, userType, specification, Location)
+    console.log("phone", Name, Email, Password, Phone,  userType)
     console.log("0")
     if (Name.trim() === "") {
         throw new apiError(400, "Name field is required");
@@ -55,9 +55,6 @@ const SignupUser = asyncHandler(async (req , res) => {
         throw new apiError(400, "Password field is required");
     } else if (userType.trim() === "") {
         throw new apiError(400, "User Type field is required");
-    }  else if (Location.trim() === "") 
-        {
-        throw new apiError(400, "Location field is required");
     } 
     else if (Phone==null) {
         throw new apiError(400, "Number is required")
@@ -83,7 +80,7 @@ const SignupUser = asyncHandler(async (req , res) => {
         }
         console.log("dataase 1")
 const user=await User.create({
-    Name, Email, Password, Phone,  userType,  Location
+    Name, Email, Password, Phone,  userType
 })
 console.log("dataase 2")
 const userCreated=await User.findById(user._id).select(
