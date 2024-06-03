@@ -19,5 +19,7 @@ app.use(cookieParser())
 app.use(express.static("public"));
 //routes import 
 import userRouter from "./routes/user.routes.js"
+import lawyerInfoRouter from "./routes/LawyerInfo.routes.js"
 app.use("/api/v1/user" ,userRouter)
+app.use("/api/v1/LawyerInfo" ,lawyerInfoRouter)
 export {app};

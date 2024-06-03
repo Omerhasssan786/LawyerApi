@@ -71,9 +71,46 @@ const getLawyerinfo = asyncHandler(async (req, res) =>{
             {
                 userData
             },
-            "User logged In Successfully"
+            " Successfully Get Info"
         )
     )
 
 })
-export  {SignupUser, loginUser }
+const updateUser = asyncHandler(async (req, res) => {
+    const userId = req.user._id;
+
+    try {
+        // Find the user by user ID
+        const user = await LawyerIfo.findById(userId);
+
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found"
+            });
+        }
+
+        // Update the user data
+        if (req.query.Experience) user.Experience = req.query.Experience;
+        if (req.query.BioData) user.BioData = req.query.BioData;
+        if (req.query.Expertise) user.Expertise = req.query.Expertise;
+        if (req.query.Availability) user.Availability = req.query.Availability;
+        if (req.query.Location) user.Location = req.query.Location;
+
+        // Save the updated user data
+        await user.save();
+
+        return res.status(200).json({
+            success: true,
+            data: user,
+            message: "User updated successfully"
+        });
+    } catch (error) {
+        console.error("Error updating user:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Internal server error"
+        });
+    }
+});
+export  {SignupUser, loginUser,getLawyerinfo }
