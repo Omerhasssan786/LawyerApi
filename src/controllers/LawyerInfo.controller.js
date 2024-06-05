@@ -76,7 +76,7 @@ const getLawyerinfo = asyncHandler(async (req, res) =>{
     )
 
 })
-const updateUser = asyncHandler(async (req, res) => {
+const updateInfo = asyncHandler(async (req, res) => {
     const userId = req.user._id;
 
     try {
@@ -113,4 +113,4 @@ const updateUser = asyncHandler(async (req, res) => {
         });
     }
 });
-export  {SignupUser, loginUser,getLawyerinfo }
+export  {addInfolawyer, updateInfo,getLawyerinfo }
